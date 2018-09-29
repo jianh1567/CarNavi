@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\houjian\Desktop\carNavi\src\main\assets"><file name="BaiduBikeNavi_Resource_v5_0_0.png" path="C:\Users\houjian\Desktop\carNavi\src\main\assets\BaiduBikeNavi_Resource_v5_0_0.png"/></source><source path="C:\Users\houjian\Desktop\carNavi\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="C:\Users\houjian\Desktop\carNavi\src\debug\assets"/></dataSet></merger>

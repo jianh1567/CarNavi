@@ -1,0 +1,188 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+MERGED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.1.0.aar\18fbffff246b76df5a67ead448f85ed9\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.1.0.aar\8b90b8d9b1de665d6347799576fb7550\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:support-v4:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-v4-25.1.0.aar\ea169b56c02ebbf0efcdd9f88676649d\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-fragment-25.1.0.aar\f508d40d4070ee3a0f7071e145c8b0f2\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.1.0.aar\15ee1511ca973cc1b9aa285b74ac5a08\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.1.0.aar\bd922cfc420d6633270886d1c2131b35\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.1.0.aar\a28e6b4fec087de16e672c4f694297e6\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-compat-25.1.0.aar\4740b4c42585bfde7bdf2fac2c468144\AndroidManifest.xml:17:1-27:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+	package
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:11-37
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:3:1-64:12
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:4:11-69
+uses-permission#com.android.launcher.permission.READ_SETTINGS
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:6:5-84
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:6:22-82
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:10:5-78
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:10:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:12:5-75
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:12:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:14:5-78
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:14:22-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:16:5-74
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:16:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:18:5-80
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:18:22-78
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:20:22-64
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:22:5-65
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:22:22-62
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:24:5-65
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:24:22-63
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:25:5-80
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:25:22-77
+uses-feature#0x00020000
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:28:5-78
+	android:glEsVersion
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:28:19-51
+	android:required
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:28:52-75
+application
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:30:5-61:19
+MERGED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.1.0.aar\18fbffff246b76df5a67ead448f85ed9\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.1.0.aar\18fbffff246b76df5a67ead448f85ed9\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.1.0.aar\8b90b8d9b1de665d6347799576fb7550\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.1.0.aar\8b90b8d9b1de665d6347799576fb7550\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-v4-25.1.0.aar\ea169b56c02ebbf0efcdd9f88676649d\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-v4-25.1.0.aar\ea169b56c02ebbf0efcdd9f88676649d\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-fragment-25.1.0.aar\f508d40d4070ee3a0f7071e145c8b0f2\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-fragment-25.1.0.aar\f508d40d4070ee3a0f7071e145c8b0f2\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.1.0.aar\15ee1511ca973cc1b9aa285b74ac5a08\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.1.0.aar\15ee1511ca973cc1b9aa285b74ac5a08\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.1.0.aar\bd922cfc420d6633270886d1c2131b35\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.1.0.aar\bd922cfc420d6633270886d1c2131b35\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.1.0.aar\a28e6b4fec087de16e672c4f694297e6\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.1.0.aar\a28e6b4fec087de16e672c4f694297e6\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-compat-25.1.0.aar\4740b4c42585bfde7bdf2fac2c468144\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-compat-25.1.0.aar\4740b4c42585bfde7bdf2fac2c468144\AndroidManifest.xml:25:5-20
+	android:supportsRtl
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:35:9-35
+	android:label
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:34:9-41
+	android:icon
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:33:9-43
+	android:allowBackup
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:32:9-35
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:31:9-61
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:36:9-38:63
+	android:value
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:38:13-61
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:37:13-52
+activity#com.wind.carnavi.BNaviGuideActivity
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:40:9-43:20
+	android:screenOrientation
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:41:19-56
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:40:19-69
+activity#com.wind.carnavi.BNavigationActivity
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:44:9-51:20
+	android:screenOrientation
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:45:19-56
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:44:19-70
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:46:13-50:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:47:17-68
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:47:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:49:17-76
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:49:27-74
+activity#com.wind.carnavi.WNaviGuideActivity
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:53:9-56:20
+	android:screenOrientation
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:54:19-56
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:53:19-69
+service#com.baidu.location.f
+ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:58:9-59:19
+	android:process
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:58:77-102
+	android:enabled
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:58:54-76
+	android:name
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml:58:18-53
+uses-sdk
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.1.0.aar\18fbffff246b76df5a67ead448f85ed9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.1.0.aar\18fbffff246b76df5a67ead448f85ed9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.1.0.aar\8b90b8d9b1de665d6347799576fb7550\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-vector-drawable:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.1.0.aar\8b90b8d9b1de665d6347799576fb7550\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-v4:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-v4-25.1.0.aar\ea169b56c02ebbf0efcdd9f88676649d\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-v4-25.1.0.aar\ea169b56c02ebbf0efcdd9f88676649d\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-fragment-25.1.0.aar\f508d40d4070ee3a0f7071e145c8b0f2\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-fragment-25.1.0.aar\f508d40d4070ee3a0f7071e145c8b0f2\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.1.0.aar\15ee1511ca973cc1b9aa285b74ac5a08\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.1.0.aar\15ee1511ca973cc1b9aa285b74ac5a08\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.1.0.aar\bd922cfc420d6633270886d1c2131b35\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.1.0.aar\bd922cfc420d6633270886d1c2131b35\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.1.0.aar\a28e6b4fec087de16e672c4f694297e6\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.1.0.aar\a28e6b4fec087de16e672c4f694297e6\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-compat-25.1.0.aar\4740b4c42585bfde7bdf2fac2c468144\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\support-compat-25.1.0.aar\4740b4c42585bfde7bdf2fac2c468144\AndroidManifest.xml:21:5-23:58
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.1.0] C:\Users\houjian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.1.0.aar\51a5bf36dd1b193895bc8b9bfeb1ac75\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		ADDED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\houjian\Desktop\carNavi\src\main\AndroidManifest.xml
