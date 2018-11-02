@@ -5,23 +5,30 @@ android {
 
     defaultConfig {
         applicationId "com.wind.carnavi"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 7
+        versionName "2.0.5"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
 
     signingConfigs {
         // your debug keystore
         debug {
             storeFile file("debug.keystore")
+        }
+        config {
+            keyAlias 'carNavi'
+            keyPassword '123456'
+            storeFile file('D:/jks/carNavi.jks')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 
@@ -40,6 +47,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/com.baidu.tts_2.3.1.20170808_e39ea89.jar')
     compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.carson_ho:SearchLayout:1.0.1'
 }
 
 buildscript {

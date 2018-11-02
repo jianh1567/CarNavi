@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="#eb4f38"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/btn_activity_back"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:onClick="onBack">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/icon_back"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_weight="0.8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/searchkey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/search_icon"
+            android:textColor="@android:color/black"
+            android:background="@drawable/search_edittext_shape"
+            android:hint="@string/edit_dest"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:drawablePadding="5dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"/>
+
+        <ImageView
+            android:visibility="visible"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/iv_delete_bg"
+            android:id="@+id/search_iv_delete"
+            android:layout_gravity="right|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/btn_search_bg"
+        android:layout_width="0dp"
+        android:layout_weight="0.1"
+        android:layout_height="50dp"
+        android:text="@string/search"
+        android:textColor="@color/color_white"
+        android:onClick="onClickSearchBtn"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lv_search_tips_bg"
+        android:divider="#00000000"
+        android:dividerHeight="6dp">
+    </ListView>
+</LinearLayout>
+

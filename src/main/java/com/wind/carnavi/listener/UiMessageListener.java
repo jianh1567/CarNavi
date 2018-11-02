@@ -66,4 +66,18 @@ public class UiMessageListener extends MessageListener {
             Log.i(TAG, message);
         }
     }
+
+    @Override
+    public void onSpeechStart(String utteranceId) {
+        sendMessage("播放开始回调, 序列号:" + utteranceId);
+        Log.i(TAG, "onSpeechStart =========");
+        mainHandler.sendMessage(mainHandler.obtainMessage(START_SPEECH, 0, 0));
+    }
+
+    @Override
+    public void onSpeechFinish(String utteranceId) {
+        sendMessage("播放结束回调, 序列号:" + utteranceId);
+        Log.i(TAG, "onSpeechFinish =========");
+        mainHandler.sendMessage(mainHandler.obtainMessage(FINISHI_SPEECH, 1, 1));
+    }
 }

@@ -4,38 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.baidu.bikenavi_demo.com.wind.bikenavi_demo.BNaviMainActivity">
+    tools:context="com.wind.carnavi.BNavigationActivity">
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/mapview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </com.baidu.mapapi.map.MapView>
 
-
-    <Button
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="骑行导航版本更新"
-        android:id="@+id/button"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button"
-        android:text="步行导航"
-        android:id="@+id/button1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:visibility="invisible"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
+        <ImageView
+            android:id="@+id/update_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/update"/>
+
+        <ImageView
+            android:id="@+id/search_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/search" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_home"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="90dp"
+        android:onClick="onClickHomeImage"/>
 
 </RelativeLayout>

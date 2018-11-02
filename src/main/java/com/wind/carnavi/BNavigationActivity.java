@@ -2,16 +2,26 @@ package com.wind.carnavi;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -39,6 +49,10 @@ import com.baidu.mapapi.search.geocode.GeoCodeResult;
 import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
+import com.baidu.mapapi.search.sug.SuggestionResult;
+import com.baidu.mapapi.search.sug.SuggestionSearch;
+import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.wind.carnavi.appupdate.ConfirmDialog;
 import com.wind.carnavi.appupdate.Constants;
 import com.wind.carnavi.appupdate.DownloadFileManager;
@@ -48,11 +62,12 @@ import com.wind.carnavi.appupdate.VersionData;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.datatype.Duration;
 
-public class BNavigationActivity extends Activity implements OnGetGeoCoderResultListener{
-    private final String TAG = "BNavigationActivity";
+public class BNavigationActivity extends Activity implements OnGetGeoCoderResultListener {
+    private static final String TAG = "BNavigationActivity";
     public LocationClient mLocationClient = null;
     private double mCurrentLat = 0.0;
     private double mCurrentLon = 0.0;
@@ -81,6 +96,9 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
     private Handler mHandler = new Handler();
     private ConfirmDialog confirmDialog;
     private static final String path = Environment.getExternalStorageDirectory() + "";
+    private ImageView mSearchImage;
+    private static final int REQUSET_CODE =1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,8 +118,28 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
         mLocationClient.registerLocationListener(new MyLocationListener());
         initLocationOption();
 
-        Button bikeBtn = (Button) findViewById(R.id.button);
-        bikeBtn.setOnClickListener(new View.OnClickListener() {
+        initSearchView();
+        initUpdateApp();
+
+        try {
+            mNaviHelper = BikeNavigateHelper.getInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("addr")){
+            mAddr = intent.getStringExtra("addr");
+            Log.i(TAG, "mAddr = " + mAddr);
+            searchGeocode();
+        }else {
+            Toast.makeText(this, R.string.no_destination, Toast.LENGTH_SHORT);
+        }
+    }
+
+    private void initUpdateApp(){
+        ImageView updateImage = (ImageView) findViewById(R.id.update_image);
+        updateImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (NetWorkHelper.isNetworkAvailable(BNavigationActivity.this)){
@@ -116,20 +154,32 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
                 }
             }
         });
+    }
 
-        try {
-            mNaviHelper = BikeNavigateHelper.getInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void initSearchView(){
+        mSearchImage = (ImageView) findViewById(R.id.search_image);
+        mSearchImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BNavigationActivity.this, SearchDestionActivity.class);
+                intent.putExtra("city", mCity);
+                startActivityForResult(intent, REQUSET_CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(requestCode == REQUSET_CODE){
+              if(resultCode == 2){
+                   if(intent.hasExtra("addr")){
+                       mAddr = intent.getStringExtra("addr");
+                       Log.i(TAG, "mAddr = " + mAddr);
+                       searchGeocode();
+                   }
+              }
         }
-
-        Intent intent = getIntent();
-        if(intent.hasExtra("addr")){
-            mAddr = intent.getStringExtra("addr");
-            Log.i(TAG, "mAddr = " + mAddr);
-        }
-
-        searchGeocode();
     }
 
     private void searchGeocode(){
@@ -284,37 +334,46 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
 
                 @Override
                 public void engineInitFail() {
-                    Log.d("View", "engineInitFail");
+                   showToastMessage(getString(R.string.engine_init_fail));
                 }
             });
         } catch (Exception e) {
             Log.d("Exception", "startBikeNavi");
+            showToastMessage(getString(R.string.engine_init_exec));
             e.printStackTrace();
         }
     }
 
     private void routePlanWithParam() {
         param = new BikeNaviLaunchParam().stPt(startPt).endPt(endPt).vehicle(1);
-        mNaviHelper.routePlanWithParams(param, new IBRoutePlanListener() {
-            @Override
-            public void onRoutePlanStart() {
-                Log.d("View", "onRoutePlanStart");
-            }
+        try {
+            mNaviHelper.routePlanWithParams(param, new IBRoutePlanListener() {
+                @Override
+                public void onRoutePlanStart() {
+                    Log.d("View", "onRoutePlanStart");
+                }
 
-            @Override
-            public void onRoutePlanSuccess() {
-                Log.d("View", "onRoutePlanSuccess");
-                Intent intent = new Intent();
-                intent.setClass(BNavigationActivity.this, BNaviGuideActivity.class);
-                startActivity(intent);
-            }
+                @Override
+                public void onRoutePlanSuccess() {
+                    Log.d("View", "onRoutePlanSuccess");
+                    showToastMessage(getString(R.string.route_sucess));
+                    Intent intent = new Intent();
+                    intent.setClass(BNavigationActivity.this, BNaviGuideActivity.class);
+                    startActivity(intent);
+                }
 
-            @Override
-            public void onRoutePlanFail(BikeRoutePlanError error) {
-                Log.d("View", "onRoutePlanFail");
-            }
+                @Override
+                public void onRoutePlanFail(BikeRoutePlanError error) {
+                    Log.d("View", "onRoutePlanFail");
+                    showToastMessage(getString(R.string.route_error));
+                }
 
-        });
+            });
+        }catch (Exception e){
+            showToastMessage(getString(R.string.route_exec));
+//            Toast.makeText(this, getString(R.string.route_error), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void requestPermission() {
@@ -353,9 +412,10 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
         if(intent.hasExtra("addr")){
             mAddr = intent.getStringExtra("addr");
             Log.i(TAG, "onNewIntent mAddr = " + mAddr);
+            searchGeocode();
+        }else {
+            Toast.makeText(this, R.string.no_destination, Toast.LENGTH_SHORT);
         }
-
-        searchGeocode();
     }
 
     public Handler handler = new Handler(){
@@ -367,8 +427,8 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
                     break;
                 case Constants.UPDATE_APP_DOWNLOAD_LOADING:
                     int point = (int)msg.obj;
-                    confirmDialog.UpdateProgress(getString(R.string.app_download_loading),point + "%","","",point);
-                    break;
+                confirmDialog.UpdateProgress(getString(R.string.app_download_loading),point + "%","","",point);
+                break;
                 case Constants.UPDATE_APP_VERSION_MSG:
                     VersionData versionData = (VersionData) msg.obj;
                     UpdateVersion(versionData);
@@ -473,8 +533,6 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
         }).start();
     }
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -482,5 +540,37 @@ public class BNavigationActivity extends Activity implements OnGetGeoCoderResult
         mSearch.destroy();
         bdA.recycle();
         bdB.recycle();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+
+        }  View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    public void onClickHomeImage(View view){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
+    }
+
+
+    private void showToastMessage(final String message){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BNavigationActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

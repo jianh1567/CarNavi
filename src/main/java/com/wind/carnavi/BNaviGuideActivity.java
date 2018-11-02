@@ -5,6 +5,10 @@ package com.wind.carnavi;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -14,7 +18,13 @@ import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.wind.carnavi.control.InitConfig;
 import com.wind.carnavi.listener.UiMessageListener;
@@ -71,6 +81,10 @@ public class BNaviGuideActivity extends Activity {
 
     protected Handler mainHandler;
 
+    private ScreenOffBroadcastReciver mScreenOffBroadcastReciver;
+
+    private AudioManager mAudioManager;
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -81,6 +95,7 @@ public class BNaviGuideActivity extends Activity {
             mSpeechSynthesizer = null;
             print("释放资源成功");
         }
+        unregisterReceiver(mScreenOffBroadcastReciver);
     }
 
     @Override
@@ -92,6 +107,7 @@ public class BNaviGuideActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
         initHandler();
         initPermission();
@@ -103,6 +119,8 @@ public class BNaviGuideActivity extends Activity {
         if (view != null) {
             setContentView(view);
         }
+
+        addHomeView();
 
         mNaviHelper.startBikeNavi(BNaviGuideActivity.this);
 
@@ -135,9 +153,9 @@ public class BNaviGuideActivity extends Activity {
                     e.printStackTrace();
                 }
                 if(guide.contains("骑") && guide.contains("导航")){
-                     speak("骑行导航开始");
+                    speak("骑行导航开始");
                  }else {
-                     speak(charSequence.toString() + "，，，" + charSequence1.toString());
+                    speak(charSequence.toString() + "，，，" + charSequence1.toString());
                  }
             }
 
@@ -190,6 +208,51 @@ public class BNaviGuideActivity extends Activity {
             }
         });
 
+        registerBroadcastReciver();
+    }
+
+    private void addHomeView(){
+        FrameLayout contentParent =
+                (FrameLayout) getWindow().getDecorView().findViewById(android.R.id.content);
+
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(R.mipmap.ic_home);
+
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(150,150);
+        params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+        params.setMargins(0,0,50,50);
+
+        imageView.setLayoutParams(params);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                startActivity(intent);
+            }
+        });
+        contentParent.addView(imageView);
+    }
+
+    public static int px2dip(Context context, float pxValue) {
+         final float scale = context.getResources().getDisplayMetrics().density;
+         return (int) (pxValue / scale + 0.5f);
+    }
+
+    private void registerBroadcastReciver(){
+        mScreenOffBroadcastReciver=new ScreenOffBroadcastReciver();
+        IntentFilter recevierFilter=new IntentFilter();
+        recevierFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(mScreenOffBroadcastReciver, recevierFilter);
+    }
+
+    private class  ScreenOffBroadcastReciver extends BroadcastReceiver {
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+                finish();
+            }
+        }
     }
 
     private void initHandler() {
@@ -198,15 +261,40 @@ public class BNaviGuideActivity extends Activity {
              * @param msg
              */
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(final Message msg) {
                 super.handleMessage(msg);
                 if (msg.obj != null) {
                     print(msg.obj.toString());
+                }
+
+                switch (msg.what){
+                    case MainHandlerConstant.START_SPEECH:
+                         if(msg.arg1 == 0 && msg.arg2 == 0){
+                             int request = mAudioManager.requestAudioFocus(afChangeListener,
+                                     AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                             if(request == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+                                 Log.i(TAG, "get audiofocus====");
+                             }
+                         }
+                         break;
+                    case MainHandlerConstant.FINISHI_SPEECH:
+                         if(msg.arg1 == 1 && msg.arg2 == 1){
+                             mAudioManager.abandonAudioFocus(afChangeListener);
+                             Log.i(TAG, "abandon audiofocus====");
+                         }
+                         break;
                 }
             }
 
         };
     }
+
+    AudioManager.OnAudioFocusChangeListener  afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            Log.i(TAG, "focusChange = " + focusChange);
+        }
+    };
 
     /**
      * 注意此处为了说明流程，故意在UI线程中调用。
@@ -272,7 +360,7 @@ public class BNaviGuideActivity extends Activity {
         // MIX_MODE_HIGH_SPEED_NETWORK ， 3G 4G wifi状态下使用在线，其它状态离线。在线状态下，请求超时1.2s自动转离线
         // MIX_MODE_HIGH_SPEED_SYNTHESIZE, 2G 3G 4G wifi状态下使用在线，其它状态离线。在线状态下，请求超时1.2s自动转离线
 
-        mSpeechSynthesizer.setAudioStreamType(AudioManager.MODE_IN_CALL);
+        mSpeechSynthesizer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         // x. 额外 ： 自动so文件是否复制正确及上面设置的参数
         Map<String, String> params = new HashMap<>();
@@ -362,6 +450,7 @@ public class BNaviGuideActivity extends Activity {
             print("[ERROR], 初始化失败");
             return;
         }
+
         int result = mSpeechSynthesizer.speak(text);
         checkResult(result, "speak");
     }
@@ -415,6 +504,20 @@ public class BNaviGuideActivity extends Activity {
 
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
